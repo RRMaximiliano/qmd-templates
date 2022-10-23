@@ -1,0 +1,105 @@
+---
+title: "This is the title of the best paper ever!"
+author: 
+  - name: "DIME Analytics"
+    affiliations: "The World Bank"
+date: today
+date-format: long
+format:
+  pdf:
+    colorlinks: true
+    include-in-header:
+      - "tex_src/preamble.tex"
+    number-sections: true
+bibliography: "tex_src/ref.bib"
+---
+
+<!-- Let's try an abstract here! -->
+\begin{abstract}
+  \lipsum[11]
+\end{abstract}
+
+<!-- First Section -->
+## First Section
+
+\lipsum[2-4]
+
+<!-- Second Section -->
+## Second Section
+
+\lipsum[2-4]
+
+<!-- Citation -->
+## Citation example
+
+@jones2022 states that \lipsum[6].
+
+Here is a list:
+
+- @khincha2022 explain why Boba Tea should be free at The World Bank.
+- You can use them in parenthesis as well [@khincha2022].
+- Another example: if you want to add only the date, you use `-` before the key. For example: `-@bjarkefur2021` will produce [-@bjarkefur2021].
+
+## Figures
+
+We can also include figures: 
+
+```{r}
+#| label: fig-mtcars
+#| fig-cap: "MPG vs horsepower, colored by transmission."
+#| echo: false
+library(ggplot2)
+mtcars2 <- mtcars
+mtcars2$am <- factor(
+  mtcars$am, labels = c('automatic', 'manual')
+)
+ggplot(mtcars2, aes(hp, mpg, color = am)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "loess") +
+  theme(legend.position = 'bottom')
+```
+
+## Tables
+
+Tables too! We can either use plain latex or r.
+
+\begin{table}[H]
+  \centering
+  \caption{Some caption here}{#tbl-tab1}
+  \begin{threeparttable}
+    \small
+    \begin{tabular}{lcccc}
+    \toprule
+      X & Y & Z & Y & Z \\
+        & Y & z & Y & Z \\
+    \midrule
+      X & Y & Z & Y & Z \\
+      X & Y & Z & Y & Z \\
+    \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+      \footnotesize
+      \item[a] Footnote
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+  
+Does the reference in  @tbl-tab1 work? Of course, it does.
+
+## Adding equations
+
+The most amazing estimating equation ever:
+
+\begin{equation}\label{eq:1}
+  y_{i} = \alpha_{1} + \beta_{2} X_{i} + \epsilon_{i}
+\end{equation}
+
+And you can refer to the equation as usual. In equation \eqref{eq:1}, we solved the SDGs.
+
+\newpage
+
+## References {-}
+
+::: {#refs}
+:::
+
